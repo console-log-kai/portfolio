@@ -716,8 +716,11 @@
   .testimonial-meta span { display: block; }
   .testimonial-ellipsis { opacity: 0.55; }
   .testimonial-card--long .testimonial-extra { display: none; }
-  .testimonial-card--long:hover .testimonial-extra { display: inline; }
-  .testimonial-card--long:hover .testimonial-ellipsis { display: none; }
+  .testimonial-card--long:hover .testimonial-extra,
+  .testimonial-card--long.is-open .testimonial-extra { display: inline; }
+  .testimonial-card--long:hover .testimonial-ellipsis,
+  .testimonial-card--long.is-open .testimonial-ellipsis { display: none; }
+  .testimonial-toggle { display: none; }
 
   /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
      COMMUNITY SECTION
@@ -827,6 +830,19 @@
     .experience-section, .tools-section, .testimonials-section, .community-section, .awards-section, .footer-cta { padding: 3rem 1.5rem; }
     .tools-grid { grid-template-columns: 1fr 1fr; }
     .awards-grid, .community-grid, .testimonials-grid { grid-template-columns: 1fr; }
+    .testimonial-toggle {
+      display: inline-block;
+      margin-top: 0.4rem;
+      font-size: var(--text-xxs);
+      font-weight: var(--w-medium);
+      color: var(--clay);
+      background: none;
+      border: none;
+      padding: 0;
+      text-decoration: underline;
+      text-underline-offset: 0.15em;
+      cursor: pointer;
+    }
     .timeline::before { left: 21px; }
     .timeline-item { grid-template-columns: 46px 1fr; gap: 0.9rem; }
     .degree-card { grid-template-columns: auto 1fr; }
@@ -868,7 +884,7 @@
     </div>
 
     <p class="hero-bio">
-      Director, Web &amp; Digital with 13+ years building full stack applications, GTM, data infrastructure, and digital strategy across AI-native, fintech, and enterprise teams. I've led 0-to-1 journeys at startups and helped modernise and transform tech at large enterprises. With an M.S. in Info Security, I bring a security-first mindset to architecture, data, and operations, keeping everything reliable.
+      Director, Web & Digital with 13+ years building full stack applications, GTM, data infrastructure, and digital strategy across B2B AI-native, fintech, and enterprise teams. I've led 0-to-1 journeys at startups and helped modernise and transform tech at large enterprises. With an M.S. in Info Security, I bring a security-first mindset to architecture, data, and operations, keeping everything reliable.
     </p>
 
     <div class="cta-group">
@@ -1088,11 +1104,11 @@
       </div>
       <div class="tool-cat">
         <div class="tool-cat-lbl"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Analytics</div>
-        <div class="tool-tags"><span class="ttag">GA4</span><span class="ttag">Amplitude</span><span class="ttag">Looker</span><span class="ttag">Tableau</span><span class="ttag">BigQuery</span><span class="ttag">Attribution</span></div>
+        <div class="tool-tags"><span class="ttag">GA4</span><span class="ttag">Microsoft Clarity</span><span class="ttag">PostHog</span><span class="ttag">Looker</span><span class="ttag">Tableau</span><span class="ttag">BigQuery</span><span class="ttag">Attribution</span></div>
       </div>
       <div class="tool-cat">
         <div class="tool-cat-lbl"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Marketing Ops</div>
-        <div class="tool-tags"><span class="ttag">Marketo</span><span class="ttag">HubSpot</span><span class="ttag">Google Tag Manager</span><span class="ttag">Lead Routing</span><span class="ttag">Data Hygiene</span></div>
+        <div class="tool-tags"><span class="ttag">Marketo</span><span class="ttag">HubSpot</span><span class="ttag">Salesforce</span><span class="ttag">Google Tag Manager</span><span class="ttag">Lead Routing</span><span class="ttag">Data Hygiene</span></div>
       </div>
       <div class="tool-cat">
         <div class="tool-cat-lbl"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Engineering</div>
@@ -1142,6 +1158,7 @@
               <br><br>
               Without hesitation, I would recommend Kai to lead any technical department or team, especially one willing to learn a top-notch, best-in-class approach to problem-solving from a patient, experienced leader.
             </span>
+            <button class="testimonial-toggle" type="button">Read full recommendation</button>
           </div>
           <div class="testimonial-meta">
             <span>Cyndie Shaffstall</span>
@@ -1166,6 +1183,7 @@
               <br><br>
               Kailash was a great team player and eagerly agreed to help with our cloud migration also. He also initiated the next generation website design for us. I strongly recommend Kailash.
             </span>
+            <button class="testimonial-toggle" type="button">Read full recommendation</button>
           </div>
           <div class="testimonial-meta">
             <span>Muthu Logan</span>
@@ -1401,6 +1419,20 @@ const obs = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.15 });
 items.forEach(el => obs.observe(el));
+
+// ── Testimonials: tap-to-expand on mobile ──
+document.addEventListener('DOMContentLoaded', function () {
+  const longCards = document.querySelectorAll('.testimonial-card--long');
+  longCards.forEach(card => {
+    const toggle = card.querySelector('.testimonial-toggle');
+    if (!toggle) return;
+    toggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      const isOpen = card.classList.toggle('is-open');
+      toggle.textContent = isOpen ? 'Hide recommendation' : 'Read full recommendation';
+    });
+  });
+});
 </script>
 </body>
 </html>
