@@ -671,9 +671,65 @@
   }
 
   /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     TESTIMONIALS SECTION
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  .testimonials-section { background: var(--parchment); padding: 2rem 4.5rem 3rem; }
+  .testimonials-inner { max-width: 960px; margin: 0 auto; }
+  .testimonials-header {
+    display: flex; align-items: center; gap: 0.55rem;
+    font-size: var(--text-xxs);
+    font-weight: var(--w-semi);
+    letter-spacing: var(--letter-wider);
+    text-transform: uppercase;
+    color: rgba(139,110,78,0.9);
+    margin-bottom: 1.25rem;
+  }
+  .testimonials-header svg { flex-shrink: 0; }
+  .testimonials-link {
+    color: inherit;
+    text-decoration: none;
+  }
+  .testimonials-link:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.18em;
+  }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
+  .testimonial-card {
+    background: var(--cream);
+    border: 1px solid rgba(139,110,78,0.13);
+    border-radius: 4px;
+    padding: 1.1rem 1.1rem 1.2rem;
+    box-shadow: 0 1px 4px rgba(58,41,24,0.05);
+  }
+  .testimonial-body {
+    font-size: var(--text-xs);
+    line-height: 1.6;
+    color: var(--deep-brown);
+    margin-bottom: 0.85rem;
+  }
+  .testimonial-meta {
+    font-size: var(--text-xxs);
+    font-weight: var(--w-medium);
+    color: rgba(90,63,39,0.9);
+  }
+  .testimonial-meta span { display: block; }
+  .testimonial-ellipsis { opacity: 0.55; }
+  .testimonial-card--long .testimonial-extra { display: none; }
+  .testimonial-card--long:hover .testimonial-extra { display: inline; }
+  .testimonial-card--long:hover .testimonial-ellipsis { display: none; }
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     COMMUNITY SECTION
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  .community-section { background: var(--parchment); padding: 2rem 4.5rem 4rem; }
+  .community-inner { max-width: 960px; margin: 0 auto; }
+  .community-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1rem; margin-top: 1.5rem; }
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
      AWARDS SECTION
   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  .awards-section { background: var(--parchment); padding: 4rem 4.5rem; }
+  .awards-section { background: var(--parchment); padding: 4rem 4.5rem 2rem; }
   .awards-inner { max-width: 960px; margin: 0 auto; }
 
   .awards-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; }
@@ -692,6 +748,12 @@
     font-size: var(--text-xs);
     font-weight: var(--w-medium);
     line-height: 1.55; color: var(--deep-brown);
+  }
+  .award-text a {
+    color: var(--clay);
+    text-decoration: underline;
+    text-decoration-thickness: 0.06em;
+    text-underline-offset: 0.15em;
   }
 
   /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -762,9 +824,9 @@
     .hero-inner { grid-template-columns: 1fr; }
     .hero-right { border-left: none; border-top: 1px solid rgba(210,181,144,0.07); padding: 2.5rem 2rem; }
     .hero-left { padding: 3rem 2rem; }
-    .experience-section, .tools-section, .awards-section, .footer-cta { padding: 3rem 1.5rem; }
+    .experience-section, .tools-section, .testimonials-section, .community-section, .awards-section, .footer-cta { padding: 3rem 1.5rem; }
     .tools-grid { grid-template-columns: 1fr 1fr; }
-    .awards-grid { grid-template-columns: 1fr 1fr; }
+    .awards-grid, .community-grid, .testimonials-grid { grid-template-columns: 1fr; }
     .timeline::before { left: 21px; }
     .timeline-item { grid-template-columns: 46px 1fr; gap: 0.9rem; }
     .degree-card { grid-template-columns: auto 1fr; }
@@ -806,7 +868,7 @@
     </div>
 
     <p class="hero-bio">
-      Part of the 0-to-1 journey at PromptQL &mdash; $1M+ in pipeline, 0 to 10k organic visitors per month, and the full GTM and data stack built from scratch.
+      Director, Web &amp; Digital with 13+ years building full stack applications, GTM, data infrastructure, and digital strategy across AI-native, fintech, and enterprise teams. I've led 0-to-1 journeys at startups and helped modernise and transform tech at large enterprises. With an M.S. in Info Security, I bring a security-first mindset to architecture, data, and operations, keeping everything reliable.
     </p>
 
     <div class="cta-group">
@@ -882,7 +944,7 @@
             </div>
             <div class="t-tenure">2022 — Present · 4 yrs</div>
           </div>
-          <div class="t-desc">Part of the 0-to-1 journey at PromptQL. Supported over $1M in pipeline in six months, grew organic traffic from zero to 10k visitors per month, and built the full GTM and data stack from scratch. Oversaw the web, design, video, social, and SEO teams across the company. Scope spans front-end engineering, ETL pipelines, Marketo, BigQuery, paid acquisition, and analytics infrastructure.</div>
+          <div class="t-desc">Own web strategy, data infrastructure, and full GTM execution for a next-gen AI platform. Played a key role in the 0-to-1 journey, from building the web and data foundation to supporting over $1M in pipeline generated in the last six months. Grew organic site traffic and SEO/GEO visibility from zero to 10,000 visitors per month. Architected lead routing, data hygiene, and multi-touch attribution across Marketo and BigQuery. Built and maintained the full modern data stack. Oversaw the web, design, video, social, and SEO teams across the company.</div>
         </div>
       </div>
 
@@ -900,7 +962,7 @@
             </div>
             <div class="t-tenure">2021 — 2022 · 1 yr · Limerick</div>
           </div>
-          <div class="t-desc">Rewrote the fraud management platform from scratch. Led a team of 5 frontend engineers, established a central UI architecture team, and demoed the product to organisational leaders across departments.</div>
+          <div class="t-desc">Rewrote the fraud management platform from scratch. Led a team of 5 frontend engineers, established a centralised UI architecture function, and demoed the product to senior organisational leaders. Drove the full development lifecycle in close collaboration with cross-functional stakeholders across product, design, and QA.</div>
         </div>
       </div>
 
@@ -916,9 +978,9 @@
               <div class="t-company">General Motors</div>
               <div class="t-role">Senior Full Stack Developer</div>
             </div>
-            <div class="t-tenure"> 2019 — 2021 · 2 yrs 2 mos · Limerick</div>
+            <div class="t-tenure"> 2019 — 2021 · 2+ yrs · Limerick</div>
           </div>
-          <div class="t-desc">Built Carzuo from the ground up inside the Innovations org. Contributed to a high-volume payment transaction rewrite. Served on the API gateway architecture team handling millions of daily requests. Trained 7 engineers on a React Native road safety app.</div>
+          <div class="t-desc">Built Carzuo, a new car services product from the ground up within the Innovations org. Contributed to a high-volume payment transaction service rewrite and served on the API gateway architecture team processing millions of daily requests.</div>
         </div>
       </div>
 
@@ -936,7 +998,7 @@
             </div>
             <div class="t-tenure">2018 — 2019 · 1 yr · Cork</div>
           </div>
-          <div class="t-desc">Frontend development for one of the world's largest electronics manufacturing services companies, working across complex enterprise-grade interfaces.</div>
+          <div class="t-desc">Frontend development across complex enterprise-grade kubernetes tooling for one of the world's largest electronics manufacturing companies.</div>
         </div>
       </div>
 
@@ -954,7 +1016,7 @@
             </div>
             <div class="t-tenure">2016 — 2018 · 2 yrs · Toronto</div>
           </div>
-          <div class="t-desc">Senior frontend development across client projects in Toronto. Transitioned to part-time while pursuing postgraduate studies in Ireland.</div>
+          <div class="t-desc">Senior frontend development across multiple client projects. Helped setting up an entire team from scratch to manage and maintain both client project and plugin development for Shopify and Wordpress.</div>
         </div>
       </div>
 
@@ -970,7 +1032,7 @@
               <div class="t-company">Hasura</div>
               <div class="t-role">Application Engineer</div>
             </div>
-            <div class="t-tenure"> 2014 — 2016 · 2 yrs 1 mo · Chennai</div>
+            <div class="t-tenure"> 2014 — 2016 · 2+ yrs · Chennai</div>
           </div>
           <div class="t-desc">Key contributor to building the frontend for Hasura's core product during its formative years. The open-source engine went on to reach over 200 million downloads on GitHub, making it one of the most widely adopted GraphQL engines in the world.</div>
         </div>
@@ -990,7 +1052,7 @@
             </div>
             <div class="t-tenure"> 2010 — 2011 · 1 yr · Chennai</div>
           </div>
-          <div class="t-desc">Technology specialist in enterprise solutions — the start of a career built at the intersection of technology and business.</div>
+          <div class="t-desc">Enterprise technology support and solutions delivery across hardware and software systems.</div>
         </div>
       </div>
 
@@ -1046,20 +1108,120 @@
       </div>
     </div>
   </div>
-</section>
+  </section>
 
-<!-- ══════════════════ AWARDS ══════════════════ -->
-<section class="awards-section" aria-label="Recognition">
-  <div class="awards-inner">
-    <div class="label label-light"><h2>Recognition</h2></div>
-    <div class="awards-grid">
-      <div class="award-item"><div class="award-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--clay)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4a2 2 0 00-2 2v1a2 2 0 002 2h2"/><path d="M18 9h2a2 2 0 012 2v1a2 2 0 01-2 2h-2"/><path d="M6 9V5a1 1 0 011-1h10a1 1 0 011 1v4"/><path d="M6 13v3a6 6 0 0012 0v-3"/><path d="M9 21h6"/><path d="M12 19v2"/></svg></div><div class="award-text">Most Valuable Player, GTM &middot; PromptQL 2024</div></div>
-      <div class="award-item"><div class="award-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--clay)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div class="award-text">Hackathon &amp; Bug Bounty Winner, GM</div></div>
-      <div class="award-item"><div class="award-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--clay)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div><div class="award-text">Faculty of Science &amp; Engineering Scholarship</div></div>
-      <div class="award-item"><div class="award-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--clay)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l4-8 4 4 3-6 4 10"/><path d="M3 20h18"/></svg></div><div class="award-text">Himalayan High Altitude Trek Finisher</div></div>
+  <!-- ══════════════════ AWARDS ══════════════════ -->
+  <section class="awards-section" aria-label="Recognition">
+    <div class="awards-inner">
+      <div class="label label-light"><h2>Recognition</h2></div>
+      <div class="awards-grid">
+        <div class="award-item"><div class="award-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--clay)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4a2 2 0 00-2 2v1a2 2 0 002 2h2"/><path d="M18 9h2a2 2 0 012 2v1a2 2 0 01-2 2h-2"/><path d="M6 9V5a1 1 0 011-1h10a1 1 0 011 1v4"/><path d="M6 13v3a6 6 0 0012 0v-3"/><path d="M9 21h6"/><path d="M12 19v2"/></svg></div><div class="award-text">Most Valuable Player, GTM &middot; PromptQL 2024</div></div>
+        <div class="award-item"><div class="award-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--clay)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div class="award-text">Hackathon &amp; Bug Bounty Winner, GM</div></div>
+        <div class="award-item"><div class="award-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--clay)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div><div class="award-text">Faculty of Science &amp; Engineering Scholarship - UL</div></div>
+        <div class="award-item"><div class="award-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--clay)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l4-8 4 4 3-6 4 10"/><path d="M3 20h18"/></svg></div><div class="award-text">Himalayan High Altitude Trek Finisher</div></div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- ══════════════════ TESTIMONIALS ══════════════════ -->
+  <section class="testimonials-section" aria-label="Testimonials from LinkedIn and clients">
+    <div class="testimonials-inner">
+      <div class="testimonials-header">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="#0A66C2" aria-hidden="true">
+          <path d="M4 3h16a1 1 0 011 1v16a1 1 0 01-1 1H4a1 1 0 01-1-1V4a1 1 0 011-1zm3.5 14.5v-8H5.25v8H7.5zm-.9-9.5a1.3 1.3 0 100-2.6 1.3 1.3 0 000 2.6zM18.75 17.5v-4.2c0-2.26-1.2-3.3-2.8-3.3-1.29 0-1.87.71-2.2 1.21v-1.04h-2.2v7.33h2.3v-4.02c0-1.06.2-2.09 1.52-2.09 1.3 0 1.32 1.2 1.32 2.16v3.95h2.06z" />
+        </svg>
+        <a class="testimonials-link" href="https://www.linkedin.com/in/kailashsudhakar/details/recommendations/?detailScreenTabIndex=0" target="_blank" rel="noopener noreferrer">Testimonials</a>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card testimonial-card--long">
+          <div class="testimonial-body">
+            Kai and I worked together at Hasura on a number of projects as well as day-to-day tasks. He is a thoughtful contributor and has a wealth of knowledge. I came to rely on him as the ultimate sounding board since he is exceptional at consuming and processing information from multiple sources before suggesting a solution or helping to implement one.<span class="testimonial-ellipsis">…</span>
+            <span class="testimonial-extra">
+              <br><br>
+              His technical acumen across dozens of apps was unparalleled, which made him my first choice of collaborators. Despite working from disparate time zones, Kai's commitment to his role and keeping his colleagues running at top efficiency meant we often worked early mornings and late nights, but he was always at the top of his game.
+              <br><br>
+              Without hesitation, I would recommend Kai to lead any technical department or team, especially one willing to learn a top-notch, best-in-class approach to problem-solving from a patient, experienced leader.
+            </span>
+          </div>
+          <div class="testimonial-meta">
+            <span>Cyndie Shaffstall</span>
+            <span>Strategic marketing/web operations &amp; optimisations leader</span>
+            <span>Oct 2022</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-body">
+            Kailash worked with us at Tiara Haemophilia and Cancer Foundation to develop our website and integrate our payment gateway. He was very helpful and went out of his way to accommodate our timelines. His work was always to our utmost satisfaction. I would definitely recommend Kailash.
+          </div>
+          <div class="testimonial-meta">
+            <span>Aparna Guhan Shyam</span>
+            <span>Managing Trustee - Tiara Kids</span>
+            <span>Jan 2019</span>
+          </div>
+        </div>
+        <div class="testimonial-card testimonial-card--long">
+          <div class="testimonial-body">
+            Kailash is a talented and creative JavaScript developer, UI designer and an excellent problem solver. He consulted with BlueZen Technologies for two years wherein he worked on a number of projects with our development team. He re-designed our IOT Controller/Gateway UI and also developed many of the dashboards for our IOT product and solution offerings.<span class="testimonial-ellipsis">…</span>
+            <span class="testimonial-extra">
+              <br><br>
+              Kailash was a great team player and eagerly agreed to help with our cloud migration also. He also initiated the next generation website design for us. I strongly recommend Kailash.
+            </span>
+          </div>
+          <div class="testimonial-meta">
+            <span>Muthu Logan</span>
+            <span>CEO, BlueZen Technologies</span>
+            <span>Apr 2018</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════ COMMUNITY ══════════════════ -->
+  <section class="community-section" aria-label="Community and Giving Back">
+    <div class="community-inner">
+      <div class="label label-light"><h2>Community &amp; Giving Back</h2></div>
+      <div class="community-grid">
+        <div class="award-item">
+          <div class="award-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--clay)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 21s-4.5-2.7-7-5.4C3 14.2 2 12.8 2 11.1 2 9.4 3.3 8 5 8c1.2 0 2.3.6 3 1.5C8.7 8.6 9.8 8 11 8c1.7 0 3 1.4 3 3.1 0 1.7-1 3.1-3 4.5"/>
+            </svg>
+          </div>
+          <div class="award-text">Help manage the website for <a href="https://tiarakids.in" target="_blank" rel="noopener noreferrer">Tiara Kids</a>, a non-profit organisation supporting children with cancer and haemophilia.</div>
+        </div>
+        <div class="award-item">
+          <div class="award-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--clay)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 9l8-4 8 4-8 4-8-4z"/>
+              <path d="M6 11v4l6 3 6-3v-4"/>
+            </svg>
+          </div>
+          <div class="award-text">Provide guest lectures at <a href="https://svce.ac.in" target="_blank" rel="noopener noreferrer">SVCE, Chennai</a>, helping students learn the latest in the tech industry.</div>
+        </div>
+        <div class="award-item">
+          <div class="award-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--clay)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="8" cy="8" r="2.5"/>
+              <circle cx="16" cy="8" r="2.5"/>
+              <path d="M3 18c0-2.2 2-4 5-4"/>
+              <path d="M21 18c0-2.2-2-4-5-4"/>
+            </svg>
+          </div>
+          <div class="award-text">Core member of Lions Club, supporting initiatives that help the poor and needy.</div>
+        </div>
+        <div class="award-item">
+          <div class="award-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--clay)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3c-2.5 0-4.5 2-4.5 4.5 0 1.6.9 3.1 2.3 3.9L9 19h6l-0.8-7.6c1.4-.8 2.3-2.3 2.3-3.9C16.5 5 14.5 3 12 3z"/>
+              <path d="M6 21h12"/>
+            </svg>
+          </div>
+          <div class="award-text">Planted thousands of native trees to support the return of wildlife and actively maintain them over time.</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
 <!-- ══════════════════ FOOTER ══════════════════ -->
 <footer class="footer-cta">
@@ -1088,7 +1250,7 @@
       Email
     </a>
   </div>
-  <p class="footer-credits">Built with love from Ireland ☘️</p>
+  <p class="footer-credits">Crafted with love from Ireland ☘️</p>
 </footer>
 
 <script>
