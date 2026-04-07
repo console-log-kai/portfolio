@@ -932,12 +932,15 @@ body.cursor-link #cursor-ring {
   .fnav-link { cursor: pointer; }
 }
 
-@media (max-width: 600px) {
-  .hero-name-line { font-size: clamp(3.5rem, 18vw, 6rem); }
-  .section-header { flex-direction: column; gap: 0.5rem; }
-  .section-num { font-size: 3rem; }
-  .hero-stats { gap: 1.5rem; }
-}
+	@media (max-width: 600px) {
+	  .hero-name-line { font-size: clamp(3.5rem, 18vw, 6rem); }
+	  .section-header { flex-direction: column; gap: 0.5rem; }
+	  .section-num { font-size: 3rem; }
+	  .hero-stats { gap: 1.5rem; }
+	  /* Hide top hero bar (kailash.dev + status) and scroll hint on mobile */
+	  .hero-topbar { display: none; }
+	  .scroll-hint { display: none; }
+	}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
