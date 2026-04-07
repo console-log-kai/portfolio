@@ -72,7 +72,7 @@
      RESET & BASE
   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: auto; }
 
   body {
     background: var(--cream);
@@ -162,6 +162,12 @@
     border-color: rgba(210,181,144,0.45);
     color: var(--cream);
     transform: translateY(-2px);
+  }
+
+  /* Character-level animation helper */
+  .char {
+    display: inline-block;
+    will-change: transform, opacity;
   }
 
   /* Animations */
@@ -656,7 +662,13 @@
     display: flex; align-items: center; gap: 7px;
   }
 
-  .tool-tags { display: flex; flex-wrap: wrap; gap: 0.38rem; }
+  .tool-tags {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.38rem;
+    overflow: hidden;
+    white-space: nowrap;
+  }
 
   /* Tool tags — xs, regular */
   .ttag {
@@ -668,6 +680,7 @@
     padding: 0.22rem 0.58rem; border-radius: 2px;
     border: 1px solid rgba(139,110,78,0.13);
     box-shadow: 0 1px 4px rgba(58,41,24,0.05);
+    flex-shrink: 0;
   }
 
   /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -701,6 +714,12 @@
     border-radius: 4px;
     padding: 1.1rem 1.1rem 1.2rem;
     box-shadow: 0 1px 4px rgba(58,41,24,0.05);
+  }
+
+  .testimonial-card--featured {
+    border-color: rgba(192,120,72,0.55);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.22);
+    transform: translateY(-2px);
   }
   .testimonial-body {
     font-size: var(--text-xs);
@@ -1149,7 +1168,7 @@
         <a class="testimonials-link" href="https://www.linkedin.com/in/kailashsudhakar/details/recommendations/?detailScreenTabIndex=0" target="_blank" rel="noopener noreferrer">Testimonials</a>
       </div>
       <div class="testimonials-grid">
-        <div class="testimonial-card testimonial-card--long">
+	        <div class="testimonial-card testimonial-card--long testimonial-card--featured">
           <div class="testimonial-body">
             Kai and I worked together at Hasura on a number of projects as well as day-to-day tasks. He is a thoughtful contributor and has a wealth of knowledge. I came to rely on him as the ultimate sounding board since he is exceptional at consuming and processing information from multiple sources before suggesting a solution or helping to implement one.<span class="testimonial-ellipsis">…</span>
             <span class="testimonial-extra">
@@ -1242,7 +1261,7 @@
   </section>
 
 <!-- ══════════════════ FOOTER ══════════════════ -->
-<footer class="footer-cta">
+  <footer class="footer-cta">
   <!-- Decorative horizon arc illustration -->
   <svg style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);pointer-events:none;z-index:0" width="640" height="130" viewBox="0 0 640 130" aria-hidden="true">
     <path d="M0,130 Q320,18 640,130" fill="none" stroke="rgba(192,120,72,0.10)" stroke-width="0.75"/>
@@ -1270,6 +1289,10 @@
   </div>
   <p class="footer-credits">Crafted with love from Ireland ☘️</p>
 </footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
 
 <script>
 // ── Hero: cursor-reactive grid illumination ──
@@ -1434,5 +1457,138 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 </script>
-</body>
-</html>
+
+  <script>
+  (function(){
+    const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let lenis = null;
+    if (!prefersReducedMotion && window.Lenis) {
+      lenis = new Lenis({
+        duration: 1.1,
+        smoothWheel: true,
+        smoothTouch: false
+      });
+
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
+    }
+
+    if (!prefersReducedMotion && window.gsap && window.ScrollTrigger) {
+      gsap.registerPlugin(ScrollTrigger);
+
+      if (lenis) {
+        lenis.on('scroll', ScrollTrigger.update);
+      }
+
+      window.addEventListener('load', function () {
+        function splitChars(selector) {
+          const elements = document.querySelectorAll(selector);
+          elements.forEach(function (el) {
+            const text = el.textContent;
+            el.textContent = '';
+            const frag = document.createDocumentFragment();
+            Array.from(text).forEach(function (char) {
+              const span = document.createElement('span');
+              span.className = 'char';
+              span.textContent = char;
+              frag.appendChild(span);
+            });
+            el.appendChild(frag);
+          });
+        }
+
+        // Kinetic character-split reveals for hero name and title
+        splitChars('.hero-name span');
+        splitChars('.title-row span');
+
+        gsap.set('.hero-name span .char, .title-row span .char', {
+          yPercent: 120,
+          opacity: 0
+        });
+
+        const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+        heroTl
+          .from('.profile-wrap', { opacity: 0, y: 24, duration: 0.7 }, 0)
+          .to('.hero-name span .char', {
+            yPercent: 0,
+            opacity: 1,
+            stagger: 0.045,
+            duration: 0.8
+          }, 0.1)
+          .to('.title-row span .char', {
+            yPercent: 0,
+            opacity: 1,
+            stagger: 0.03,
+            duration: 0.7
+          }, 0.25)
+          .from('.hero-bio', { opacity: 0, y: 20, duration: 0.7 }, 0.4)
+          .from('.cta-group', { opacity: 0, y: 18, duration: 0.6 }, 0.5)
+          .from('.hero-right', { opacity: 0, x: 40, duration: 0.9 }, 0.2);
+
+        // Experience timeline scroll animations
+        gsap.utils.toArray('.timeline-item').forEach(function (item) {
+          gsap.from(item, {
+            opacity: 0,
+            y: 36,
+            duration: 0.6,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: item,
+              start: 'top 80%',
+              toggleActions: 'play none none reverse'
+            }
+          });
+        });
+
+        // Auto-scrolling marquee tool strips
+        gsap.utils.toArray('.tool-tags').forEach(function (row) {
+          const distance = row.scrollWidth - row.clientWidth;
+          if (distance <= 0) return;
+          gsap.fromTo(row, { x: 0 }, {
+            x: -distance,
+            ease: 'none',
+            duration: 20,
+            repeat: -1
+          });
+        });
+
+        // Featured testimonials scroll-in
+        gsap.utils.toArray('.testimonial-card').forEach(function (card) {
+          const isFeatured = card.classList.contains('testimonial-card--featured');
+          gsap.from(card, {
+            opacity: 0,
+            y: isFeatured ? 40 : 24,
+            duration: isFeatured ? 0.7 : 0.55,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 85%',
+              toggleActions: 'play none none reverse'
+            }
+          });
+        });
+
+        // Awards and community items
+        gsap.utils.toArray('.awards-grid .award-item, .community-grid .award-item').forEach(function (el) {
+          gsap.from(el, {
+            opacity: 0,
+            y: 24,
+            duration: 0.5,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 90%',
+              toggleActions: 'play none none reverse'
+            }
+          });
+        });
+      });
+    }
+  })();
+  </script>
+  </body>
+  </html>
